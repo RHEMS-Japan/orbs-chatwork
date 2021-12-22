@@ -1,0 +1,13 @@
+description: >
+  Sample example description.
+
+usage:
+  version: 2.1
+  orbs:
+    rj-chatwork: rhems-japan/chatwork@x.y.z
+  workflows:
+    use-my-orb:
+      jobs:
+      - rj-chatwork/chatwork-notify:
+          room_id: "123456789"
+          body: "hello"

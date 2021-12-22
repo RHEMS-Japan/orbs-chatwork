@@ -1,0 +1,33 @@
+description: >
+  This is the command to send a message to Chatwork with the specified content using the curl command.
+
+parameters:
+  api_ver:
+    type: string
+    default: "v2"
+    description: "Chatwork API's version"
+  token:
+    type: env_var_name
+    default: CHATWORK_TOKEN
+    description: "Chatwork API's version"
+  room_id:
+    type: string
+    description: "Chatwork Room ID"
+  body:
+    type: string
+    description: "The contents of the body sent to Chatwork"
+  self_unread:
+    type: boolean
+    default: true
+    description: |
+      "Whether Token users should unread messages or not. Unread=true, Read=false"
+
+steps:
+  - run:
+      name: Send a notification to chatwork.
+      environment:
+        TOKEN: <<parameters.token>>
+        BODY: <<parameters.body>>
+        IS_UNREAD: <<parameters.self_unread>>
+        ROOMID: <<parameters.room_id>>
+      command: <<include(scripts/send.sh)>>
