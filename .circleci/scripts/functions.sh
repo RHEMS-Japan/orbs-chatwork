@@ -6,7 +6,7 @@ function create_message() {
     WARNING="864724297"
 
     #body
-    MESSAGE=`cat << EOS
+    MESSAGE=`cat <<'EOS'
 Project : orbs-chatwork
 Repo : alpha
 Time : 2021-12-22 18:00:00
