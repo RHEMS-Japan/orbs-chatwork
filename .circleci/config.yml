@@ -33,7 +33,7 @@ jobs:
       - run:
           name: create message
           command: create_message
-      - rj-chatwork/chatwork-notify:
+      - rj-chatwork/chatwork-send:
           room_id: "255691709"
           body: $BODY
       - rj-package/create_badge:
