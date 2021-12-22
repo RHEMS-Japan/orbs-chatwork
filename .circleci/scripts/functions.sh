@@ -6,11 +6,11 @@ function create_message() {
     WARNING="864724297"
 
     #body
-    MESSAGE=`cat <<'EOS'
+    MESSAGE=`cat <<'EOF'
 Project : orbs-chatwork
 Repo : alpha
 Time : 2021-12-22 18:00:00
-EOS`
+EOF`
     
     TITLE="Orb作成中"
     SUB_TITLE="試験投稿です"
