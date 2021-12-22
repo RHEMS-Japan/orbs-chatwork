@@ -9,7 +9,7 @@ function create_message() {
     MESSAGE=`cat << EOS
     Project : orbs-chatwork
     Repo : alpha
-    Time : 2021-12-22 14:00:00
+    Time : 2021-12-22 18:00:00
     EOS`
     TITLE="Orb作成中"
     SUB_TITLE="試験投稿です"
