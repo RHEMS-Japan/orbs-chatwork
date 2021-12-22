@@ -3,8 +3,9 @@ version: 2.1
 orbs:
   rj-chatwork: rhems-japan/chatwork@<<pipeline.parameters.dev-orb-version>>
   orb-tools: circleci/orb-tools@10.0
-  bats: circleci/bats@1.0
+  # bats: circleci/bats@1.0
   shellcheck: circleci/shellcheck@2.0
+  rj-package: rhems-japan/package@0.0.27
 
 parameters:
   run-integration-tests:
@@ -29,6 +30,9 @@ jobs:
       # - rj-chatwork/chatwork-notify:
       #     room_id: "255691709"
       #     body: $BODY
+      - rj-package/create_badge:
+          app: "orbs-chatwork"
+      - rj-package/update_readme
 
 workflows:
   test-pack:
@@ -39,15 +43,15 @@ workflows:
       - shellcheck/check:
           dir: ./src/scripts
           exclude: SC2148
-      - bats/run:
-          path: ./src/tests
+      # - bats/run:
+      #     path: ./src/tests
       - orb-tools/publish-dev:
           orb-name: rhems-japan/chatwork
           context: orb-publishing
           requires:
             - orb-tools/lint
             - orb-tools/pack
-            - bats/run
+            # - bats/run
             - shellcheck/check
       - orb-tools/trigger-integration-tests-workflow:
           name: trigger-integration-dev
