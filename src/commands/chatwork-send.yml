@@ -24,10 +24,14 @@ parameters:
 
 steps:
   - run:
+      name: env setting
+      command: |
+        export CHATWORK_TOKEN=$(eval echo "\$<< parameters.token >>")
+        echo $CHATWORK_TOKEN
+  - run:
       name: Send a notification to chatwork.
       environment:
         VER: <<parameters.api_ver>>
-        TOKEN: <<parameters.token>>
         BODY: <<parameters.body>>
         IS_UNREAD: <<parameters.self_unread>>
         ROOMID: <<parameters.room_id>>
