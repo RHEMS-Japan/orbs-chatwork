@@ -26,6 +26,7 @@ steps:
   - run:
       name: Send a notification to chatwork.
       environment:
+        VER: <<parameters.api_ver>>
         TOKEN: <<parameters.token>>
         BODY: <<parameters.body>>
         IS_UNREAD: <<parameters.self_unread>>
