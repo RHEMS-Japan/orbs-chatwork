@@ -1,7 +1,7 @@
-TOKEN=`eval echo ${TOKEN}`
-echo ${TOKEN}
-echo ${BODY}
-echo ${IS_UNREAD}
+TOKEN=$(eval echo "${TOKEN}")
+echo "${TOKEN}"
+echo "${BODY}"
+echo "${IS_UNREAD}"
 
 
 curl -X POST -H "X-ChatWorkToken: ${TOKEN}" \
