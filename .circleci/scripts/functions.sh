@@ -1,18 +1,16 @@
 function create_message() {
 # images
-ALERT_FIRING="864720511"
-ALERT_RESOLVED="864720669"
-WARNING="864724297"
+SUCCESS="866484042"
+ERROR="866484114"
 
 #body
 MESSAGE=`cat <<EOF
 Project : orbs-chatwork
 Repo : alpha
-Time : 2021-12-22 18:00:00
+Time : $(date)
 EOF
 `
+BODY="[preview id=${SUCCESS} ht=60][hr]${MESSAGE}"
 
-TITLE="Orb作成中"
-SUB_TITLE="試験投稿です"
-echo "export BODY='[info][title]${TITLE}[/title]${SUB_TITLE}[preview id=${ALERT_RESOLVED} ht=60][hr]${MESSAGE}[/info]'" >> $BASH_ENV
+echo "export BODY=${BODY}" >> $BASH_ENV
 }
