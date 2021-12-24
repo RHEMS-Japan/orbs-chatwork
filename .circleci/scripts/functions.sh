@@ -7,7 +7,7 @@ ERROR="866484114"
 MESSAGE=`cat <<EOF
 Project : orbs-chatwork
 Repo : alpha
-Time : "$(date)"
+Time : "$(date "+%Y/%m/%d %H:%M:%S")"
 EOF
 `
 BODY="[preview id=${SUCCESS} ht=60][hr]${MESSAGE}"
