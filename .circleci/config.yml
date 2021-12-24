@@ -33,7 +33,6 @@ jobs:
       - run:
           name: create message
           command: create_message
-      - run: exit 1
       - rj-chatwork/chatwork-send:
           room_id: "255694560"
           body: $BODY
