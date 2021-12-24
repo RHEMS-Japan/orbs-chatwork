@@ -10,8 +10,8 @@ Repo : alpha
 Time : 2021/12/24 14:46:45
 EOF
 `
-BODY="[preview id=${SUCCESS} ht=60][hr]${MESSAGE}"
-
+# BODY="[preview id=${SUCCESS} ht=60][hr]${MESSAGE}"
+BODY="testtest"
 echo "${BODY}"
 echo "export BODY=${BODY}" >> $BASH_ENV
 }
