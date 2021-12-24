@@ -1,3 +1,4 @@
+# shellcheck disable=SC2155
 echo "$BODY"
 echo -e "---"
 export C_BODY=$(eval echo "\$BODY")
