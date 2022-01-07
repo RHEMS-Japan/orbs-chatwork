@@ -119,6 +119,56 @@ jobs:
 ### How to send a multi-line message with an image?
 
 複数行で文字列を送信したい場合、方法はいくつかあるかとは思いますが、ここではコマンド`chatwork-send`を呼ぶ前に、スクリプトを書いて前処理を行う方法を紹介します。
+例えば、下記のように記述すると実現できます。
 
 If you want to send a string on multiple lines, there may be several ways to do it, but here's how to write a script to do the pre-processing before calling the command `chatwork-send`.
+For example, it can be realized by writing as follows.
+
+
+```yml
+version: 2.1
+
+orbs:
+  rj-chatwork: rhems-japan/chatwork@a.b.c
+
+jobs:
+  something-job:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: create message
+          command: |
+            MESSAGE=$(cat \<<EOF
+            Branch : $CIRCLE_BRANCH
+            Time : $(date "+%Y/%m/%d %H:%M:%S")
+            https://circleci.com/workflow-run/${CIRCLE_WORKFLOW_ID}
+            EOF
+            )
+            BODY="[preview id=866484042 ht=60][hr]${MESSAGE}"
+            echo "export MESSAGE='${BODY}'" >> $BASH_ENV
+      - rj-chatwork/chatwork-send:
+          room_id: "255694560"
+          body: $MESSAGE
+```
+
+実行結果は下記のとおりです。
+複数行のメッセージと画像を組み合わせることが出来ており、[定義済み環境変数](https://circleci.com/docs/ja/2.0/env-vars/#built-in-environment-variables)と組み合わせてCircleCiのワークフローを確認しやすくしています。
+
+The execution result is as follows.
+You can combine multi-line messages and images, and combine them with [Built-in environment variables](https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables) to make it easier to see your CircleCi workflow.
+
+<img src="images/for_readme/image05.png" width="600px">
+
+## Description of other configurable parameters
+
+|param|type|description|default|
+|:---:|:---:|:---|:---|
+|`api_ver`|string|Chatwork API's version|`"v2"`|
+|`token`|env_var_name|Chatwork API's Token|-|
+|`room_id`|string|Chatwork Room ID|-|
+|`body`|string|The contents of the body sent to Chatwork|-|
+|`self_unread`|boolean|Whether Token users should unread messages or not. <br>Unread=`true`, Read=`false`|`true`|
+|`when`|enum|[when attribute](https://circleci.com/docs/2.0/configuration-reference/#the-when-attribute).<br>`on_success`:the step will run only if all of the previous steps have been successful (returned exit code 0).<br>`always`:the step will run regardless of the exit status of previous steps.<br>`on_fail`: the step will run only if one of the preceding steps has failed (returns a non-zero exit code).|`on_success`|
 

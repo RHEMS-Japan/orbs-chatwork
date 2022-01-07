@@ -9,7 +9,7 @@ parameters:
   token:
     type: env_var_name
     default: CHATWORK_TOKEN
-    description: "Chatwork API's version"
+    description: "Chatwork API's Token"
   room_id:
     type: string
     description: "Chatwork Room ID"
