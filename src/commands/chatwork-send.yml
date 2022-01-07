@@ -30,6 +30,7 @@ parameters:
     - always
 
 steps:
+  - run: echo <<parameters.body>>
   - run:
       name: env setting
       command: |
