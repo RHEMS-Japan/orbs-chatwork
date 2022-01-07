@@ -20,7 +20,7 @@ First, access the URL below, log in, and issue an API Token.
 https://www.chatwork.com/service/packages/chatwork/subpackages/api/token.php
 
 
-<img src="images/for_readme/image01.png" width="300px">
+<img src="images/for_readme/image01.png" width="600px">
 
 ### Set Environment Variables from CircleCi Project Settings
 
@@ -28,9 +28,21 @@ https://www.chatwork.com/service/packages/chatwork/subpackages/api/token.php
 
 Register the issued API Token in the environment variable of the CircleCi Project to be used with the name `CHATWORK_TOKEN`.
 
-<img src="images/for_readme/image02.png" width="300px">
+<img src="images/for_readme/image02.png" width="600px">
 
+### How to write `.circleci/config.yml`
 
+chatworkのroom idをURLから確認します。以下の場合、room idは`123456789`となります。
+
+Check the chatwork room id from the URL. In the following cases, the room id is `123456789`.
+
+```
+https://www.chatwork.com/#!rid123456789
+```
+
+下記は、指定したroom idに`hello`と送る例です。
+
+The following is an example of sending `hello` to the specified room id.
 
 ```yml
 version: 2.1
@@ -45,6 +57,33 @@ jobs:
     steps:
       - checkout
       - rj-chatwork/chatwork-send:
-          room_id: "00000000"
-          body: "hello"
+          room_id: "123456789"
+          body: hello
 ```
+
+### What if you want to send an image?
+
+chatworkに送るメッセージに画像を利用したい場合は、事前に準備が必要です。
+利用するroom idのチャンネルに、画像をアップロードしておきます。
+例えば、当リポジトリに用意した`images/success.png`を利用して説明します。
+
+If you want to use images in messages sent to chatwork, you need to prepare in advance.
+Upload the image to the channel of the room id you use.
+For example, we will explain using `images/success.png` prepared in this repository.
+
+<img src="images/success.png" width="100px">
+
+画像をチャンネルにアップロードした後、編集を選択します。
+
+After uploading the image to the channel, select Edit.
+
+<img src="images/for_readme/image03.png" width="600px">
+<img src="images/for_readme/image03e.png" width="600px">
+
+`preview id`を確認し、控えておきます。
+
+Check the `preview id` and make a note of it.
+
+<img src="images/for_readme/image04.png" width="600px">
+<img src="images/for_readme/image04e.png" width="600px">
+

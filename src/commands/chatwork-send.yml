@@ -31,11 +31,9 @@ parameters:
 
 steps:
   - run:
-      name: set parameters.body
-      command: echo "export _body='<<parameters.body>>'" >> $BASH_ENV
-  - run:
       name: env setting
       command: |
+        echo "export _body='<<parameters.body>>'" >> $BASH_ENV
         export CHATWORK_TOKEN=$(eval echo "\$<< parameters.token >>")
         echo $CHATWORK_TOKEN
   - run:
@@ -43,7 +41,6 @@ steps:
       name: Send a notification to chatwork.
       environment:
         VER: <<parameters.api_ver>>
-        # BODY: "${_body}"
         IS_UNREAD: <<parameters.self_unread>>
         ROOMID: <<parameters.room_id>>
       command: <<include(scripts/send.sh)>>
