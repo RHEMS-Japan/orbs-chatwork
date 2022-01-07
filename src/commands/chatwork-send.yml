@@ -42,7 +42,7 @@ steps:
       name: Send a notification to chatwork.
       environment:
         VER: <<parameters.api_ver>>
-        BODY: $_body
+        BODY: "${_body}"
         IS_UNREAD: <<parameters.self_unread>>
         ROOMID: <<parameters.room_id>>
       command: <<include(scripts/send.sh)>>
