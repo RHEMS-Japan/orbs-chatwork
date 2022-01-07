@@ -30,9 +30,9 @@ jobs:
       # - run:
       #     name: add script
       #     command: echo ". ${CI_FUNCTIONS}" >> $BASH_ENV
-      - run:
-          name: create message
-          command: create_message
+      # - run:
+      #     name: create message
+      #     command: create_message
       - rj-chatwork/chatwork-send:
           room_id: "255694560"
           body: "hello"
