@@ -27,15 +27,15 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - << pipeline.parameters.ssh-key >>
-      # - run:
-      #     name: add script
-      #     command: echo ". ${CI_FUNCTIONS}" >> $BASH_ENV
-      # - run:
-      #     name: create message
-      #     command: create_message
+      - run:
+          name: add script
+          command: echo ". ${CI_FUNCTIONS}" >> $BASH_ENV
+      - run:
+          name: create message
+          command: create_message
       - rj-chatwork/chatwork-send:
           room_id: "255694560"
-          body: "hello"
+          body: $MESSAGE
       - rj-package/create_badge:
           app: "orbs-chatwork"
       - rj-package/update_readme

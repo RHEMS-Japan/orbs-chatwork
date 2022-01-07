@@ -14,6 +14,6 @@ EOF
 `
 BODY="[preview id=${SUCCESS} ht=60][hr]${MESSAGE}"
 
-echo "export BODY='${BODY}'" >> $BASH_ENV
-echo "${BODY}"
+echo "export MESSAGE='${BODY}'" >> $BASH_ENV
+echo "${MESSAGE}"
 }
