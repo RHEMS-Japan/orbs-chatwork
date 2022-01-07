@@ -30,7 +30,7 @@ parameters:
     - always
 
 steps:
-  - run: echo <<parameters.body>>
+  - run: echo "<<parameters.body>>"
   - run:
       name: env setting
       command: |
@@ -41,7 +41,7 @@ steps:
       name: Send a notification to chatwork.
       environment:
         VER: <<parameters.api_ver>>
-        BODY: <<parameters.body>>
+        BODY: "<<parameters.body>>"
         IS_UNREAD: <<parameters.self_unread>>
         ROOMID: <<parameters.room_id>>
       command: <<include(scripts/send.sh)>>
