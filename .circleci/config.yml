@@ -27,9 +27,9 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - << pipeline.parameters.ssh-key >>
-      - run:
-          name: add script
-          command: echo ". ${CI_FUNCTIONS}" >> $BASH_ENV
+      # - run:
+      #     name: add script
+      #     command: echo ". ${CI_FUNCTIONS}" >> $BASH_ENV
       - run:
           name: create message
           command: create_message
