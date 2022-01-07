@@ -1,7 +1,8 @@
 function create_message() {
 # images
-SUCCESS="866484042"
-ERROR="866484114"
+SUCCESS="871810507"
+ERROR="871810825"
+ON_HOLD="871810928"
 
 #body
 MESSAGE=`cat <<EOF
