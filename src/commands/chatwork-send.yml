@@ -31,7 +31,7 @@ parameters:
 
 steps:
   - run: echo "<<parameters.body>>"
-  - run: _body=$(eval echo -e "<<parameters.body>>")
+  - run: export _body=$(eval echo "\$<< parameters.body >>")
   - run:
       name: env setting
       command: |
