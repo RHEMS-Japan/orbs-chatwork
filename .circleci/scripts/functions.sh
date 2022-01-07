@@ -6,9 +6,9 @@ ON_HOLD="871810928"
 
 #body
 MESSAGE=`cat <<EOF
-Project : orbs-chatwork
-Repo : alpha
-Time : $(date "+%Y/%m/%d %H:%M:%S")
+Project : orbs-chatwork\n
+Repo : alpha\n
+Time : $(date "+%Y/%m/%d %H:%M:%S")\n
 https://circleci.com/workflow-run/${CIRCLE_WORKFLOW_ID}
 EOF
 `
