@@ -1,6 +1,7 @@
 # shellcheck disable=SC2155
 echo "$BODY"
-# _body=$(eval echo "${BODY}")
+_body=$(eval echo "${BODY}")
+echo "$_body"
 echo -e "---"
 
 RESULT=$(curl -s -o /dev/null -w '%{http_code}\n' -X POST -H "X-ChatWorkToken: ${CHATWORK_TOKEN}" \
