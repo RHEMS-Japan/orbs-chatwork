@@ -1,4 +1,3 @@
-# shellcheck disable=SC2155, SC2154
 echo -e "${_body}"
 echo -e "---"
 

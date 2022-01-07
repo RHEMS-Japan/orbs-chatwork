@@ -42,7 +42,7 @@ jobs:
             https://circleci.com/workflow-run/${CIRCLE_WORKFLOW_ID}
             EOF
             )
-            BODY="[preview id=${SUCCESS} ht=60][hr]${MESSAGE}"
+            BODY="[preview id=866484042 ht=60][hr]${MESSAGE}"
             echo "export MESSAGE='${BODY}'" >> $BASH_ENV
       - rj-chatwork/chatwork-send:
           room_id: "255694560"
@@ -59,7 +59,7 @@ workflows:
       - orb-tools/pack
       - shellcheck/check:
           dir: ./src/scripts
-          exclude: SC2148
+          exclude: "SC2148, SC2154, SC2155"
       # - bats/run:
       #     path: ./src/tests
       - orb-tools/publish-dev:
