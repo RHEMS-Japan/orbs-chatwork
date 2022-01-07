@@ -30,8 +30,9 @@ parameters:
     - always
 
 steps:
-  - run: echo "<<parameters.body>>"
-  - run: echo "export BODY='<<parameters.body>>'" >> $BASH_ENV
+  - run:
+      name: set parameters.body
+      command: echo "export _body='<<parameters.body>>'" >> $BASH_ENV
   - run:
       name: env setting
       command: |
