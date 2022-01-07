@@ -87,3 +87,38 @@ Check the `preview id` and make a note of it.
 <img src="images/for_readme/image04.png" width="600px">
 <img src="images/for_readme/image04e.png" width="600px">
 
+parameters.bodyに、`preview id`を指定し、htには画像サイズを指定して下記のように記載します。
+
+Specify `preview id` in parameters.body, specify the image size in ht, and describe as follows.
+
+```yml
+body: "[preview id=866484042 ht=60]"
+```
+
+全体的には下記のような`config.yml`になります。
+
+The entire `config.yml` is described as follows.
+
+```yml
+version: 2.1
+
+orbs:
+  rj-chatwork: rhems-japan/chatwork@a.b.c
+
+jobs:
+  something-job:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - rj-chatwork/chatwork-send:
+          room_id: "123456789"
+          body: "[preview id=866484042 ht=60]"
+```
+
+### How to send a multi-line message with an image?
+
+複数行で文字列を送信したい場合、方法はいくつかあるかとは思いますが、ここではコマンド`chatwork-send`を呼ぶ前に、スクリプトを書いて前処理を行う方法を紹介します。
+
+If you want to send a string on multiple lines, there may be several ways to do it, but here's how to write a script to do the pre-processing before calling the command `chatwork-send`.
+
