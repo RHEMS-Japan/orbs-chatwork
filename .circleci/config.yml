@@ -33,9 +33,10 @@ jobs:
       - run:
           name: create message
           command: create_message
+      - run: echo "${MESSAGE}"
       - rj-chatwork/chatwork-send:
           room_id: "255694560"
-          body: $MESSAGE
+          body: "${MESSAGE}"
       - rj-package/create_badge:
           app: "orbs-chatwork"
       - rj-package/update_readme
