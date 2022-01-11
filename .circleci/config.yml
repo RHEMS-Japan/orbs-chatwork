@@ -37,9 +37,6 @@ jobs:
           name: add script
           command: echo ". ${CI_FUNCTIONS}" >> $BASH_ENV
       - run:
-          name: fail
-          command: exit 1
-      - run:
           when: on_success
           name: create message
           command: create_message << pipeline.parameters.image-id-success >>
