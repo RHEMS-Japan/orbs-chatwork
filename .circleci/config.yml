@@ -47,17 +47,6 @@ jobs:
           when: on_fail
           name: create message
           command: create_message << pipeline.parameters.image-id-error >>
-      # - run:
-      #     name: create message
-      #     command: |
-      #       MESSAGE=$(cat \<<EOF
-      #       Branch : $CIRCLE_BRANCH
-      #       Time : $(date "+%Y/%m/%d %H:%M:%S")
-      #       https://circleci.com/workflow-run/${CIRCLE_WORKFLOW_ID}
-      #       EOF
-      #       )
-      #       BODY="[preview id=866484042 ht=60][hr]${MESSAGE}"
-      #       echo "export MESSAGE='${BODY}'" >> $BASH_ENV
       - rj-chatwork/chatwork-send:
           room_id: "255694560"
           body: $MESSAGE

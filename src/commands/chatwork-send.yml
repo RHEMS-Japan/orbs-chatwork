@@ -31,6 +31,7 @@ parameters:
 
 steps:
   - run:
+      when: always
       name: env setting
       command: |
         echo "export _body='<<parameters.body>>'" >> $BASH_ENV
