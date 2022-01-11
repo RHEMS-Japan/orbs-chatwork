@@ -17,6 +17,12 @@ parameters:
   ssh-key:
     type: string
     default: "9c:e3:92:94:43:a2:70:9d:56:76:21:6b:4a:5b:6f:ba"
+  image-id-success:
+    type: string
+    default: "871810507"
+  image-id-error:
+    type: string
+    default: "871810825"
 
 jobs:
   integration-test-1:
@@ -27,26 +33,32 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - << pipeline.parameters.ssh-key >>
-      # - run:
-      #     name: add script
-      #     command: echo ". ${CI_FUNCTIONS}" >> $BASH_ENV
+      - run:
+          name: add script
+          command: echo ". ${CI_FUNCTIONS}" >> $BASH_ENV
+      - run:
+          when: on_success
+          name: create message
+          command: create_message << pipeline.parameters.image-id-success >>
+      - run:
+          when: on_fail
+          name: create message
+          command: create_message << pipeline.parameters.image-id-error >>
       # - run:
       #     name: create message
-      #     command: create_message
-      - run:
-          name: create message
-          command: |
-            MESSAGE=$(cat \<<EOF
-            Branch : $CIRCLE_BRANCH
-            Time : $(date "+%Y/%m/%d %H:%M:%S")
-            https://circleci.com/workflow-run/${CIRCLE_WORKFLOW_ID}
-            EOF
-            )
-            BODY="[preview id=866484042 ht=60][hr]${MESSAGE}"
-            echo "export MESSAGE='${BODY}'" >> $BASH_ENV
+      #     command: |
+      #       MESSAGE=$(cat \<<EOF
+      #       Branch : $CIRCLE_BRANCH
+      #       Time : $(date "+%Y/%m/%d %H:%M:%S")
+      #       https://circleci.com/workflow-run/${CIRCLE_WORKFLOW_ID}
+      #       EOF
+      #       )
+      #       BODY="[preview id=866484042 ht=60][hr]${MESSAGE}"
+      #       echo "export MESSAGE='${BODY}'" >> $BASH_ENV
       - rj-chatwork/chatwork-send:
           room_id: "255694560"
           body: $MESSAGE
+          when: always
       - rj-package/create_badge:
           app: "orbs-chatwork"
       - rj-package/update_readme
