@@ -3,7 +3,7 @@ name: Post to orbs-package
 on:
   push:
     branches:
-      - "master"
+      - "main"
 
 jobs:
   post:
